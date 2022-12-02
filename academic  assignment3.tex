@@ -1,0 +1,193 @@
+\documentclass{article}
+\usepackage[UTF-8]{ctex}
+\usepackage{pifont}
+\usepackage{indentfirst} 
+\usepackage{setspace}
+\usepackage{enumerate}
+\usepackage{amstext}
+\usepackage{listings}
+\usepackage{ xcolor} 
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage{geometry}
+\setlength{\parindent}{2em}
+\geometry{papersize={21cm,29.7cm}}
+\geometry{left=3.17cm,right=3.17cm,top=2.54cm,bottom=2.54cm}
+\onehalfspacing
+\usepackage{amsmath}
+
+\title{assignment3}
+\author{zxren0102 }
+\date{December 2022}
+
+
+\begin{document}
+
+ 
+
+\maketitle
+
+\noindent
+\textbf{第1题}:
+
+\noindent
+证明:
+
+因为$X$是严格高斯白噪声，因此有：
+\begin{equation}
+    E[X_{n}]=0,Cov(X_{m},X_{n})=\left\{
+        \begin{aligned}
+            \sigma^{2}&,m=n\\
+            0         &,m\neq n
+        \end{aligned}
+    \right.
+\end{equation}
+
+因此对任意的$\tau$，$(X_{1},X_{2},\cdots,X_{n})$与$(X_{1},X_{2},\cdots,X_{n})$服从相同的正态分布。
+
+因此$X$是严格平稳过程。
+
+\noindent
+\textbf{第2题}:
+
+\noindent
+证明:
+
+因为$B^{0,\sigma^{2}}$是布朗运动，因此$X_{t}^{u}=B^{0,\sigma^{2}}_{t+u}-B^{0,\sigma^{2}}_{t}$也是布朗运动，因此有：
+\begin{equation}
+    X_{t}^{u}\sim N(0,u\sigma^2)
+\end{equation}
+
+且有：
+\begin{equation}
+    m_{X}(t)=0,R_{X}(t,s)=E[\overline{X}_{t}^{u}{X}_{s}^{u}]=\left\{
+        \begin{aligned}
+            \sigma^{2}&,t=s\\
+            u\sigma^2 &,t\neq s
+        \end{aligned}
+    \right.
+\end{equation}
+
+所以$X^{u}$是平稳过程。又因为$X^{u}$是正态过程，因此$X^{u}$为严平稳过程。
+
+\noindent
+\textbf{第4题}:
+
+\noindent
+证明:
+
+\begin{equation}
+    \begin{aligned}
+        m_{Y}(t)&=E[X_{t+1}-X_{t}]=1+3(t+1)-(1+3t)=3\\
+        R_{Y}(t,t+\tau)&=E[(X_{t+1}-X_{t})(X_{t+\tau+1}-X_{t+\tau})]\\
+        &=E[X_{t+1}X_{t+\tau+1}]+E[X_{t}X_{t+\tau}]-E[X_{t+1}X_{t+\tau}]-E[X_{t}X_{t+\tau+1}]\\
+        &=2R_{X}(\tau)-R_{X}(\tau-1)-R_{X}(\tau+1)\\
+        &=2{\rm e}^{-\lambda|\tau|}-{\rm e}^{-\lambda|\tau-1|}-{\rm e}^{-\lambda|\tau+1|}
+    \end{aligned}
+\end{equation}
+随机过程$Y$的平稳性得证。
+
+\noindent
+\textbf{第6题}:
+
+\noindent
+解:
+
+由题意得：
+\begin{equation}
+    R_{A_{i}}(t,t)=E^{2}[A_{i}]+D[A_{i}]=a_{i}^{2}+\sigma_{i}^{2}
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+        m_{X}(t)&=E[A_{1}+A_{2}t]=a_{1}+a_{2}t\\
+        R_{X}(t,t+\tau)&=E[(A_{1}+A_{2}t)(A_{1}+A_{2}(t+\tau))]\\
+        &=E[A_{1}^{2}]+E[A_{2}^{2}]t(t+\tau)+E[A_{1}A_{2}](2t+\tau)\\
+        &=a_{1}^{2}+\sigma_{1}^{2}+(a_{2}^{2}+\sigma_{2}^{2})t(t+\tau)+a_{1}a_{2}(2t+\tau)
+    \end{aligned}
+\end{equation}
+
+由上式可知，因为$E[A_{2}^{2}]=a_{2}^{2}+\sigma_{2}^{2}>0$，因此$R_{X}(t,t+\tau)$是随时间$t$变化，因此
+$X$不是平稳过程。
+
+\noindent
+\textbf{第13题}:
+
+\noindent
+解:
+
+因为：
+\begin{equation}
+    \begin{aligned}
+        m_{X}&=E[A]\cos t+E[B]\sin t=0\\
+        R_{X}(t,t+\tau)&=E[\overline{X_{t}}X_{t+\tau}]\\
+        &=E[(\overline{A}\cos t+\overline{B}\sin t)(A\cos (t+\tau)+B\sin(t+\tau))]\\
+        &=E[\overline{A}A]\cos t\cos(t+\tau)+E[\overline{B}B]\sin t\sin(t+\tau)\\
+        &=\sigma^{2}(\cos t\cos(t+\tau)+\sin t\sin(t+\tau))\\
+        &=\sigma^{2}\cos(\tau)
+    \end{aligned}
+\end{equation}
+因此$X$为平稳过程。又因为：
+\begin{equation}
+    \begin{aligned}
+        <X_{t}>=&\underset{T\rightarrow\infty}{{\rm lim}}\frac{1}{2T}\int_{-T}^{T}(A\cos (t+\tau)+B\sin(t+\tau)){\rm d}t=0=m_{X}\\
+        <\overline{X_{t}}X_{t+\tau}>=&\underset{T\rightarrow\infty}{{\rm lim}}\frac{1}{2T}\int_{-T}^{T}(\overline{A}\cos {t}+\overline{B}\sin{t})
+        (A\cos (t+\tau)+B\sin(t+\tau)){\rm d}t\\
+        =&\underset{T\rightarrow\infty}{{\rm lim}}\frac{1}{2T}\int_{-T}^{T}\overline{A}A\frac{\cos\tau+\cos(2t+\tau)}{2}+\overline{B}B\frac{\cos\tau-\cos(2t+\tau)}{2}+\\
+        &\overline{A}B\frac{\sin\tau+\sin(2t+\tau)}{2}+\overline{B}A\frac{\sin(2t+\tau)-\sin\tau}{2}{\rm d}t\\
+        =&\underset{T\rightarrow\infty}{{\rm lim}}\frac{1}{2T}\int_{-T}^{T}(\overline{A}A+\overline{B}B)\frac{\cos\tau}{2}+(\overline{A}B-\overline{B}A)\frac{\sin\tau}{2}{\rm d}t\neq R_{X}(\tau)
+    \end{aligned}
+\end{equation}
+
+因此$X$的均值函数符合各态历经性，而相关函数则否然。
+
+\noindent
+\textbf{第14题}:
+
+\noindent
+解:
+
+因为$s(t)$是周期为$T_{0}$的函数，因此有：
+\begin{equation}
+    \begin{aligned}
+        m_{X}(t)&=E[X_{t}]=\frac{1}{T_{0}}\int_{0}^{T_{0}}s(t+\Theta){\rm d}\Theta=\frac{1}{T_{0}}\int_{0}^{T_{0}}s(t){\rm d}\Theta\\
+        R_{X}(t,t+\tau)&=E[\overline{X}_{t}{X}_{t+\tau}]\\
+        &=\frac{1}{T_{0}}\int_{0}^{T_{0}}\overline{s}(t+\Theta){s}(t+\tau+\Theta){\rm d}\Theta\\
+        &=\frac{1}{T_{0}}\int_{0}^{T_{0}}\overline{s}(\Theta){s}(\tau+\Theta){\rm d}\Theta
+    \end{aligned}
+\end{equation}
+
+因此$X$为平稳过程，又由于：
+\begin{equation}
+    <X_{t}>=\underset{T\rightarrow\infty}{{\rm lim}}\frac{1}{2T}\int_{-T}^{T}s(t+\Theta){\rm d}t\in[A,B]
+\end{equation}
+其中：
+
+\begin{equation}
+    A=\min(\frac{\lfloor 2T/T_{0}\rfloor}{2T}\int_{0}^{T_0}s(t){\rm d}t,\frac{\lceil 2T/T_{0}\rceil}{2T}\int_{0}^{T_0}s(t){\rm d}t),
+    B=\max(\frac{\lfloor 2T/T_{0}\rfloor}{2T}\int_{0}^{T_0}s(t){\rm d}t,\frac{\lceil 2T/T_{0}\rceil}{2T}\int_{0}^{T_0}s(t){\rm d}t)
+\end{equation}
+
+又因为：
+\begin{equation}
+    \underset{T\rightarrow\infty}{{\rm lim}}\frac{\lfloor 2T/T_{0}\rfloor}{2T}=
+    \underset{T\rightarrow\infty}{{\rm lim}}\frac{\lceil 2T/T_{0}\rceil}{2T}=
+    \frac{1}{T_{0}}
+\end{equation}
+
+由夹逼准则可知，
+\begin{equation}
+    <X_{t}>=\frac{1}{T_{0}}\int_{0}^{T_{0}}s(t){\rm d}t=m_{X}
+\end{equation}
+
+同理可得：
+\begin{equation}
+    <\overline{X}_{t}X_{t+\tau}>=\underset{T\rightarrow\infty}{{\rm lim}}\frac{1}{2T}\int_{-T}^{T}\overline{s}(t+\Theta){s}(t+\tau+\Theta){\rm d}t=
+    \frac{1}{T_{0}}\int_{0}^{T_{0}}\overline{s}(\Theta){s}(\tau+\Theta){\rm d}\Theta=R_{X}(\tau)
+\end{equation}
+
+因此$X$为各态历经过程。
+ 
+\end{document}
